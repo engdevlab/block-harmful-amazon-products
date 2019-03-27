@@ -1,0 +1,45 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "version": "0.1",
+  "default_locale": "ja",
+  "description": "__MSG_extensionDescription__",
+  "permissions": [
+    // "activeTab",
+    // "declarativeContent",
+    "storage",
+    "*://www.amazon.co.jp/*"
+  ],
+  "icons": {
+    "32": "interfaces/img/icon_128.png",
+    "48": "interfaces/img/icon_128.png",
+    "128": "interfaces/img/icon_128.png"
+  },
+  "background": {
+    "scripts": [ "services/background_listener.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": {
+      "128": "interfaces/img/icon_128.png"
+    },
+    "default_title": "block harmful amazon products",
+    "default_popup": "interfaces/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.amazon.co.jp/*"
+      ],
+      "js": [
+        "lib/common/jquery-3.3.1.min.js",
+        "lib/chrome/l10n.js",
+        "interfaces/contents.js"
+      ],
+      "css": [
+        "interfaces/contents.css"
+      ]
+    }
+  ],
+  "options_page": "interfaces/options.html"
+}
